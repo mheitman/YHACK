@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>App</title>
+	<meta name="viewport" content="initial-scale=1.0">
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css?family=Yantramanav" rel="stylesheet">
+    <script src="https://use.fontawesome.com/4880187b46.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script
+	  src="https://code.jquery.com/jquery-3.2.1.min.js"
+	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	  crossorigin="anonymous">
+	 </script>
+	 <script type="text/javascript" src="script.js"></script>
+</head>
+<body>
+	<div id="container">
+		<div class="header">
+				<div id="city">Kansas City</div>
+				<div id="state">Missouri, United States</div>
+			</div>
+			<!-- <div class="empty-header"></div> -->
+		<div id="results">
+			<!-- <div class="header">
+				<div id="city">Kansas City</div>
+				<div id="state">Missouri, United States</div>
+			</div> -->
+			<!-- <div class="empty-header"></div> -->
+<!-- 			<div class="rating">
+				<div class="rating-desc-container">
+					<span id="rating-desc" class="source">Positivity Rating</span>
+					<span id="help"><i class="fa fa-question-circle-o" aria-hidden="true"></i></span>
+				</div>
+			</div> -->
+		</div>
+    	<div id="map"></div>
+    	<div id="name">Mappable</div>
+	</div>
+	<div id="modal-container">
+		<div class="modal">
+			<div><i class="fa fa-twitter" aria-hidden="true"></i></div>
+			This score was determined by analyzing real-time Twitter data for the local area and using something fancy like probably machine learning to numericize the perceived sentiment.
+			<div id="close"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
+		</div>
+	</div>
+    <script>
+      let map;
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          'center': {'lat': 39.099477, 'lng': -94.604291},
+          'zoom': 4,
+          'styles': [
+		  {
+		    "elementType": "geometry",
+		    "stylers": [
+		      {
+		        "color": "#212121"
+		      }
+		    ]
+		  },
+		  {
+		    "elementType": "labels.icon",
+		    "stylers": [
+		      {
+		        "visibility": "off"
+		      }
+		    ]
+		  },
+		  {
+		    "elementType": "labels.text.fill",
+		    "stylers": [
+		      {
+		        "color": "#757575"
+		      }
+		    ]
+		  },
+		  {
+		    "elementType": "labels.text.stroke",
+		    "stylers": [
+		      {
+		        "color": "#212121"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "administrative",
+		    "elementType": "geometry",
+		    "stylers": [
+		      {
+		        "color": "#757575"
+		      },
+		      {
+		        "visibility": "off"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "administrative.country",
+		    "elementType": "labels.text.fill",
+		    "stylers": [
+		      {
+		        "color": "#9e9e9e"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "administrative.land_parcel",
+		    "stylers": [
+		      {
+		        "visibility": "off"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "administrative.locality",
+		    "elementType": "labels.text.fill",
+		    "stylers": [
+		      {
+		        "color": "#bdbdbd"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "poi",
+		    "stylers": [
+		      {
+		        "visibility": "off"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "poi",
+		    "elementType": "labels.text.fill",
+		    "stylers": [
+		      {
+		        "color": "#757575"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "poi.park",
+		    "elementType": "geometry",
+		    "stylers": [
+		      {
+		        "color": "#181818"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "poi.park",
+		    "elementType": "labels.text.fill",
+		    "stylers": [
+		      {
+		        "color": "#616161"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "poi.park",
+		    "elementType": "labels.text.stroke",
+		    "stylers": [
+		      {
+		        "color": "#1b1b1b"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "road",
+		    "elementType": "geometry.fill",
+		    "stylers": [
+		      {
+		        "color": "#2c2c2c"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "road",
+		    "elementType": "labels.icon",
+		    "stylers": [
+		      {
+		        "visibility": "off"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "road",
+		    "elementType": "labels.text.fill",
+		    "stylers": [
+		      {
+		        "color": "#8a8a8a"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "road.arterial",
+		    "elementType": "geometry",
+		    "stylers": [
+		      {
+		        "color": "#373737"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "road.arterial",
+		    "elementType": "labels",
+		    "stylers": [
+		      {
+		        "visibility": "off"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "road.highway",
+		    "elementType": "geometry",
+		    "stylers": [
+		      {
+		        "color": "#3c3c3c"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "road.highway",
+		    "elementType": "labels",
+		    "stylers": [
+		      {
+		        "visibility": "off"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "road.highway.controlled_access",
+		    "elementType": "geometry",
+		    "stylers": [
+		      {
+		        "color": "#4e4e4e"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "road.local",
+		    "stylers": [
+		      {
+		        "visibility": "off"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "road.local",
+		    "elementType": "labels.text.fill",
+		    "stylers": [
+		      {
+		        "color": "#616161"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "transit",
+		    "stylers": [
+		      {
+		        "visibility": "off"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "transit",
+		    "elementType": "labels.text.fill",
+		    "stylers": [
+		      {
+		        "color": "#757575"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "water",
+		    "elementType": "geometry",
+		    "stylers": [
+		      {
+		        "color": "#000000"
+		      }
+		    ]
+		  },
+		  {
+		    "featureType": "water",
+		    "elementType": "labels.text.fill",
+		    "stylers": [
+		      {
+		        "color": "#3d3d3d"
+		      }
+		    ]
+		  }
+		]
+        });
+
+	    let marker = new google.maps.Marker({
+	      position: {'lat': 39.099477, 'lng': -94.604291},
+	      map: map,
+    	  animation: google.maps.Animation.DROP,
+	      title: 'Hello World!'
+	    });
+
+	    function placeMarkerAndPanTo(latLng, map) {
+	      marker.setMap(null);
+		  marker = new google.maps.Marker({
+		    position: latLng,
+		    animation: google.maps.Animation.DROP,
+		    map: map
+		  });
+		  // map.panTo(latLng);
+		}
+
+	    function toggleBounce() {
+		  if (marker.getAnimation() !== null) {
+		    marker.setAnimation(null);
+		  } else {
+		    marker.setAnimation(google.maps.Animation.BOUNCE);
+		  }
+		}
+
+        map.addListener('click', function(e) {
+          // console.log(e.latLng.lat(), e.latLng.lng());
+          makeReq(e.latLng.lat(), e.latLng.lng());
+	      placeMarkerAndPanTo(e.latLng, map);
+	    });
+      }
+
+      // let modal = document.getElementById('modal-container');
+	  // let open = document.getElementById("help");
+	  let close = document.getElementById("close");
+	  // let container = document.getElementById("container")
+
+	  // When the user clicks on the button, open the modal 
+	  const openOnClick = () => {
+	  	  let modal = document.getElementById('modal-container');
+	  	  let container = document.getElementById("container")
+	      // modal.style.display = "initial";
+    	  modal.style.opacity = 1;
+    	  modal.style.width = "initial";
+    	  modal.style.height = "initial";
+    	  container.style.opacity = 0.3;
+	  }
+
+	  // When the user clicks on <span> (x), close the modal
+	  close.onclick = function() {
+	  	let modal = document.getElementById('modal-container');
+	  	  let container = document.getElementById("container")
+	  	  
+    	  modal.style.opacity = 0;
+    	  container.style.opacity = 1;
+	  }
+
+	  // When the user clicks anywhere outside of the modal, close it
+	  window.onclick = function(event) {
+	      if (event.target == modal) {
+	          modal.style.display = "none";
+    	  	  modal.style.opacity = 0;
+	      }
+	  }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZ3Ejf0EzxClDbW0ouPgtuyBcDW1utz68&callback=initMap"
+    async defer></script>
+</body>
+</html>

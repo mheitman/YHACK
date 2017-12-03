@@ -1,0 +1,210 @@
+html, body {
+	height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Yantramanav', sans-serif;
+}
+
+.author {
+	text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+    color: grey;
+    margin-bottom: 2px;
+}
+
+.twitter {
+	display: flex;
+	/*max-height: 100px;*/
+	overflow-x: scroll;
+	background-color: white;
+}
+
+.tweet-container {
+	background-color: #ddd;
+	padding: 20px;
+	display: flex; 
+	border-right: 2px solid white;
+}
+
+.tweet {
+	min-width: 170px;
+	font-size: 12px;
+}
+
+#container {
+	display: flex;
+	margin: auto;
+	position: fixed;
+	top: 10%; bottom: 10%; left: 12%; right: 12%;
+	transition: all 0.5s;
+}
+
+.rating {
+	height: 20px;
+}
+
+#results {
+	width: 35%;
+	height: 100%;
+	background-color: #eee;
+	overflow-y: scroll;
+}
+
+.caption {
+	font-size: 12px;
+	text-align: justify;
+}
+
+.timestamp {
+	font-size: 12px;
+    color: grey;
+    font-style: italic;
+    margin-left: 8px;
+}
+
+.source {
+	text-transform: uppercase;
+    font-size: 11px;
+    font-weight: bold;
+    color: grey;
+    margin-right: 8px;
+}
+
+.header {
+	padding: 30px 40px;
+	width: 26.6%;
+	position: fixed;
+	top: 70px;
+	background-color: rgba(0, 0, 0, 0.75);
+}
+
+.empty-header {
+	height: 135px;
+}
+
+.rating {
+	margin: 27px 40px 0 40px;
+}
+
+.rating-desc-container {
+	margin-bottom: 6px;
+}
+
+.fa-question-circle-o {
+	color: grey;
+	font-size: 12px;
+	cursor: pointer;
+	margin-left: -8px;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
+.twitter-group {
+	margin-top: 40px;
+	margin-bottom: 40px;
+}
+
+#modal-container {
+	width: 40%;
+	height: 250px;
+	background-color: rgba(0, 0, 0, 0.7);
+	position: fixed;
+	top: 0; bottom: 0; left: 0; right: 0;
+	margin: auto;
+	opacity: 0;
+	transition: all 0.5s;
+/*	width: 1px;
+	height: 1px;*/
+	display: none;
+}
+
+.modal {
+	padding-top: 30px;
+	padding-left: 80px;
+	padding-right: 80px;
+	color: #eee;
+	font-size: 12px;
+	font-style: italic;
+	text-align: center;
+	z-index: 1;
+}
+
+.fa-twitter {
+	margin: 20px;
+	font-size: 44px;
+}
+
+.twitter-header {
+	text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    color: grey;
+    margin-top: 0;
+	margin-left: 40px;
+	margin-bottom: 8px;
+}
+
+.twitter-header .fa-twitter {
+	font-size: 12px;
+	margin: 0;
+	margin-right: 4px;
+	color: #a2ccff;
+}
+
+.fa-times-circle-o {
+	font-size: 24px;
+	margin-top: 20px;
+	cursor: pointer;
+}
+
+#city {
+	font-size: 50px;
+	font-weight: bold;
+	color: white;
+}
+
+#state {
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 16px;
+	color: #c1c1c1;
+}
+
+.info {
+	display: flex;
+	padding-top: 8px;
+	padding-bottom: 8px;
+	line-height: 10px;
+	color: grey;
+}
+
+.title {
+	font-size: 17px;
+    font-weight: bold;
+}
+
+.result {
+	padding: 40px;
+	background-color: #f9f9f9;
+	margin: 48px 0;
+}
+
+#map {
+	margin: auto;
+	height: 100%;
+	width: 65%;
+}
+
+#name {
+	color:  rgba(0, 0, 0, 0.75);
+	position: fixed;
+	font-size: 120px;
+	bottom: 29px;
+	right: 190px;
+	font-weight: bold;
+	color: #a2ccff;
+}
